@@ -42,7 +42,7 @@ mkHandlerPool = Prelude.zipWith (\r c -> ClientHandler { chRoute = r ,chControll
 
 angularMkClientHandlers ::Value -> ClientHandlerPool -> JavascriptUrl (Route App)
 angularMkClientHandlers appName handlerList= [julius|
-           angular.module(#{appName},['ui.bootstrap.modal']).
+           angular.module(#{appName},[]).
            config(['$routeProvider', function ($routeProvider){
            "use strict";
            $routeProvider.

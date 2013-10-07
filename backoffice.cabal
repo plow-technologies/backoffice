@@ -1,4 +1,4 @@
-name:              backoffice
+name:             backoffice
 version:           0.0.0
 cabal-version:     >= 1.8
 build-type:        Simple
@@ -19,11 +19,13 @@ library
                      ClientHandler
                      ClientRoutes
                      Controllers
+                     Controllers.Main
                      Controllers.Types
                      Settings
                      Settings.StaticFiles
                      Settings.Development
                      Handler.Home
+                     Handler.Main
                      Handler.Widgets.Framework
 
     if flag(dev) || flag(library-only)

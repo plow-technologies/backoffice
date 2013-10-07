@@ -59,6 +59,18 @@ mkYesodData "App" $(parseRoutesFile "config/routes")
 
 type Form x = Html -> MForm (HandlerT App IO) (FormResult x, Widget)
 
+
+
+-- | An alternate Default layout for controllers...
+-- tuned to allow clean widgets to be served separately
+controllerDefaultLayout :: (ToWidget site a, Yesod site) => a -> HandlerT site IO Html
+controllerDefaultLayout widget = do
+  master <- getYesod
+  mmsg <- getMessage
+  pc <- widgetToPageContent $ do
+          $(widgetFile "controller-default-layout")
+  giveUrlRenderer $(hamletFile "templates/controller-default-layout-wrapper.hamlet")
+
 -- Please see the documentation for the Yesod typeclass. There are a number
 -- of settings which can be configured by overriding methods here.
 instance Yesod App where

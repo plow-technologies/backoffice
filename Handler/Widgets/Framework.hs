@@ -53,17 +53,9 @@ onpingRouteModule = do
 
 onpingAppModule :: Widget
 onpingAppModule = do
-  -- timePickerModule 
-  -- headerModule
-  -- contentModule
-  -- contentTypeModule
-  -- menuModule
   onpingRouteModule
-  -- highchartsModule
-  -- uiModule
-  -- fusionModule
   toWidget [julius|
-            onpingAppModule=angular.module('backofficeAppModule',['onpingApp.routes']);
+            onpingAppModule=angular.module('backoffice',['onpingApp.routes']);
             |]
 
 --------------------------------------------------
@@ -75,7 +67,7 @@ frameworkWidget = do
   -- onpingContentModule
   onpingAppModule
   [whamlet|
-<div ng-app="backofficeAppModule" ng-view>
+<div ng-app="backoffice" ng-view>
 |]
 
 

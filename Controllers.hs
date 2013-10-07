@@ -9,11 +9,12 @@ import Prelude hiding (head,init,last,readFile, tail, writeFile)
 import Yesod 
 import Foundation
 import Controllers.Types
+import Controllers.Main
 
 -- |Every new route adds a client controller here and a route in ClientRoutes.hs
 
 clientControllerPool::ControllerPool
-clientControllerPool = []
+clientControllerPool = [mainController]
                    
 
 

@@ -43,11 +43,11 @@ mainCR = ClientRoute {
 
 data ClientRoute = ClientRoute { 
                                   name :: Text
-                                ,template :: Route App 
-                                ,base :: Route App
+                               ,template :: Route App 
+                               ,base :: Route App
 
                                 
-                                }
+                               }
 
 
 

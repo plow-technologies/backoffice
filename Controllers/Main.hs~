@@ -1,0 +1,24 @@
+{-# LANGUAGE TupleSections, OverloadedStrings #-}
+
+module Controllers.Main where
+
+
+import Yesod 
+import Controllers.Types
+import ClientRoutes
+-- |Controllers are intended for ClientRoute controllers
+-- Though lots of things have controllers in the Angular World
+-- It seems that having special very "Safe" controllers for your routes would make sense
+
+
+mainController :: Controller
+mainController = makeController uad ctrl 
+                    where 
+                      uad = "MainController"
+                      ctrl = [julius|
+function MainController ($scope,$location,$routeParams,Dashboard,Content) {
+  "use strict";                                
+
+
+}
+|]
