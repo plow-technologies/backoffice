@@ -27,6 +27,8 @@ library
                      Handler.Home
                      Handler.Main
                      Handler.Widgets.Framework
+                     Handler.Widgets.Services.Listers
+                     Handler.CRUD.Parts
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT

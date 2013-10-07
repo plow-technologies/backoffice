@@ -7,3 +7,7 @@
 / HomeR GET POST
 
 /main MainR GET
+
+
+
+/crud/parts CrudPartsR GET

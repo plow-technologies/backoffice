@@ -1,0 +1,62 @@
+{-# LANGUAGE TupleSections, OverloadedStrings #-}
+module Handler.Widgets.Services.Listers where
+
+--import qualified Data.Text as T
+import Import
+
+
+userService :: Widget
+userService  = do 
+  toWidget [julius| 
+
+            angular.module('onpingUser.services',['ngResource','onpingUser.permissions','onpingUser.listers']).
+                   factory('Groups',function($resource){
+               "use strict";
+                return $resource("@{GroupsJsonR}".replace(/(?=:[0-9])/,"\\"),
+                                 {},
+                                 {query: {method:'GET', isArray:true}
+                                 });
+        });
+            angular.module('onpingUser.permissions',['ngResource']).
+                   factory('Permissions' ,function($resource){
+                                         "use strict";
+                                         return $resource("@{PermissionsJsonR}".replace(/(?=:[0-9])/,"\\"),
+                                                          {},
+                                                          {query: {method:'GET', isArray:true}}
+                                                         );
+                                       });
+
+            angular.module('onpingUser.listers',['ngResource']).
+                   factory('Listers' ,function ($resource){
+                                           "use strict";
+                                           var listerService = [];
+                                           listerService.ungroupedLocGetter =  $resource("@{JsonUngroupedListerLocationR}".replace(/(?=:[0-9])/,"\\"),
+                                                   {},
+                                                   {query:{method:'GET',isArray:true}}
+                                                   );
+                                           listerService.locByGroup = $resource("@{GroupLocationJoinR}".replace(/(?=:[0-9])/,"\\"),
+                                                                                              {},
+                                                                                              {remove:{method:'DELETE',isArray:true},
+                                                                                               query:{method:'GET',isArray:true},
+                                                                                               get:{method:'GET',isArray:true},
+                                                                                               save:{method:'POST',isArray:true}}
+                                                                                              );
+                                           listerService.locGetter =  $resource("@{JsonListerLocationR}".replace(/(?=:[0-9])/,"\\"),
+                                                                                              {},
+                                                                                              {query:{method:'GET',isArray:true}}
+                                                                                              );
+                                           listerService.ungroupedCompGetter = $resource("@{JsonUngroupedListerCompanyR}".replace(/(?=:[0-9])/,"\\"),
+                                                                                {},
+                                                                                {query:{method:'GET',isArray:true}});
+
+                                           listerService.userGetter = $resource("@{JsonListerLocationR}".replace(/(?=:[0-9])/,"\\"),
+                                                                                   {},
+                                                                                  {query:{method:'GET',isArray:true}}                                                                                   
+                                                                                  );
+                                            
+                                            return listerService;
+                            });
+                                           
+
+|]
+

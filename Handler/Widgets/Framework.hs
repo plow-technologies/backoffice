@@ -10,7 +10,7 @@ import Import
 -- import Handler.Widgets.Ui
 -- import Handler.Widgets.Content
 -- import Handler.Widgets.ContentTypes
--- import Handler.Widgets.Services.User
+import Handler.Widgets.Services.Listers
 -- import Handler.Widgets.Services.Dashboard
 -- import Handler.Widgets.Services.Content
 -- | Angular JS modules

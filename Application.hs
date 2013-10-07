@@ -12,6 +12,7 @@ import Yesod.Default.Config
 import Yesod.Default.Main
 import Yesod.Default.Handlers
 import Handler.Main
+import Handler.CRUD.Parts
 import Network.Wai.Middleware.RequestLogger
 import qualified Database.Persist
 import Database.Persist.Sql (runMigration)
