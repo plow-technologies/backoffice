@@ -4,10 +4,12 @@ module Handler.Widgets.Services.Listers where
 --import qualified Data.Text as T
 import Import
 
+
+-- | This is the ajax access side of the various CRUD routines
 listerService :: Widget
 listerService  = do 
   toWidget [julius| 
-            angular.module('backoffice.listers',['ngResource']).
+            angular.module('listers',['ngResource']).
                    factory('Listers' ,function ($resource){
                                            "use strict";
                                            var listerService = [];

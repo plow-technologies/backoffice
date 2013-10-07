@@ -43,6 +43,14 @@ import Handler.Widgets.Services.Listers
 
 
 
+-- Lister Services
+backofficeListerModule :: Widget
+backofficeListerModule = do
+  listerService
+  toWidget [julius|
+            angular.module('backoffice.services',['listers']);
+|]
+
 -- | Root App for Onping
 onpingRouteModule::Widget
 onpingRouteModule = do
@@ -53,9 +61,10 @@ onpingRouteModule = do
 
 onpingAppModule :: Widget
 onpingAppModule = do
+  backofficeListerModule
   onpingRouteModule
   toWidget [julius|
-            onpingAppModule=angular.module('backoffice',['onpingApp.routes']);
+            onpingAppModule=angular.module('backoffice',['onpingApp.routes','backoffice.services']);
             |]
 
 --------------------------------------------------
@@ -64,7 +73,7 @@ frameworkWidget :: Widget
 frameworkWidget = do
   -- onpingUserModule
   -- onpingDashboardModule
-  -- onpingContentModule
+  -- onpingContentModule  backoffice
   onpingAppModule
   [whamlet|
 <div ng-app="backoffice" ng-view>
