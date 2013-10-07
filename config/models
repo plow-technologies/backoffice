@@ -10,3 +10,17 @@ Email
     UniqueEmail email
 
  -- By default this file is used in Model.hs (which is imported by Foundation.hs)
+
+
+PurchaseOrder
+  poNum         Text
+  UniquePoNum   poNum
+  project       Text
+  vendor        Text
+  requested     Text
+  approved      Text
+  date          Day
+  rcvDate       Day
+  payDate       Day
+  status        Text
+  notes         Textarea

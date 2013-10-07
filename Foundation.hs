@@ -1,5 +1,4 @@
 module Foundation where
-
 import Prelude
 import Yesod
 import Yesod.Static
@@ -24,6 +23,7 @@ import System.Log.FastLogger (Logger)
 -- keep settings and values requiring initialization before your application
 -- starts running, such as database connections. Every handler will have
 -- access to the data present here.
+
 data App = App
     { settings :: AppConfig DefaultEnv Extra
     , getStatic :: Static -- ^ Settings for static file serving.
@@ -81,11 +81,10 @@ instance Yesod App where
         -- you to use normal widget features in default-layout.
 
         pc <- widgetToPageContent $ do
-            $(combineStylesheets 'StaticR
-                [ css_normalize_css
-                , css_bootstrap_css
-                ])
-            $(widgetFile "default-layout")
+              addStylesheet $ StaticR css_bootstrap_css
+              addStylesheet $ StaticR css_normalize_css
+              addScript $ StaticR js_angular_js
+              $(widgetFile "default-layout")
         giveUrlRenderer $(hamletFile "templates/default-layout-wrapper.hamlet")
 
     -- This is done to provide an optimization for serving static files from

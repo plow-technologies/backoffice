@@ -1,0 +1,83 @@
+{-# LANGUAGE TupleSections, OverloadedStrings #-}
+module Handler.Widgets.Framework where
+
+import Import
+-- import Handler.Widgets.Ui.TimePicker
+-- import Handler.Widgets.Header
+-- import Handler.Widgets.Menu
+-- import Handler.Widgets.HighCharts
+-- import Handler.Widgets.Fusion
+-- import Handler.Widgets.Ui
+-- import Handler.Widgets.Content
+-- import Handler.Widgets.ContentTypes
+-- import Handler.Widgets.Services.User
+-- import Handler.Widgets.Services.Dashboard
+-- import Handler.Widgets.Services.Content
+-- | Angular JS modules
+--------------------------------------------------
+
+-- | User services
+-- onpingUserModule :: Widget
+-- onpingUserModule = do
+--   userService
+--   toWidget [julius|                        
+--             onpingUserModule=angular.module('onpingUser',['onpingUser.services']);
+--             |]
+
+-- | Dashboard services 
+-- onpingDashboardModule :: Widget 
+-- onpingDashboardModule = do 
+--   dashboardService
+--   toWidget [julius|
+--             angular.module('onpingDashboard',['onpingDashboard.services']);
+            
+-- |]
+
+-- | Content services 
+-- onpingContentModule :: Widget 
+-- onpingContentModule = do 
+--   contentService
+--   toWidget [julius|
+--             angular.module('onpingContent',['onpingContent.services']);            
+-- |]
+
+
+
+-- | Root App for Onping
+onpingRouteModule::Widget
+onpingRouteModule = do
+  toWidget (angularMkClientHandlers "onpingApp.routes" mkHandlerPool)
+  toWidget (loadClientControllers clientControllerPool)
+
+
+
+onpingAppModule :: Widget
+onpingAppModule = do
+  -- timePickerModule 
+  -- headerModule
+  -- contentModule
+  -- contentTypeModule
+  -- menuModule
+  onpingRouteModule
+  -- highchartsModule
+  -- uiModule
+  -- fusionModule
+  toWidget [julius|
+            onpingAppModule=angular.module('backofficeAppModule',['onpingApp.routes']);
+            |]
+
+--------------------------------------------------
+
+frameworkWidget :: Widget
+frameworkWidget = do
+  -- onpingUserModule
+  -- onpingDashboardModule
+  -- onpingContentModule
+  onpingAppModule
+  [whamlet|
+<div ng-app="backofficeAppModule" ng-view>
+|]
+
+
+
+

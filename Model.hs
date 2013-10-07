@@ -1,7 +1,10 @@
+{-# LANGUAGE TupleSections, OverloadedStrings, QuasiQuotes, TemplateHaskell, TypeFamilies, RecordWildCards,
+             DeriveGeneric ,MultiParamTypeClasses ,FlexibleInstances  #-}
 module Model where
 
 import Prelude
 import Yesod
+import Data.Time
 import Data.Text (Text)
 import Database.Persist.Quasi
 import Data.Typeable (Typeable)
@@ -12,3 +15,5 @@ import Data.Typeable (Typeable)
 -- http://www.yesodweb.com/book/persistent/
 share [mkPersist sqlOnlySettings, mkMigrate "migrateAll"]
     $(persistFileWith lowerCaseSettings "config/models")
+
+

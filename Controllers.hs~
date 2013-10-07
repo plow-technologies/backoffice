@@ -1,0 +1,49 @@
+{-# LANGUAGE TupleSections, OverloadedStrings #-}
+module Controllers ( module Controllers.Types,
+                     clientControllerPool 
+                     , loadClientControllers
+                     ) where
+
+import Prelude hiding (head,init,last,readFile, tail, writeFile)
+
+import Yesod 
+import Foundation
+import Controllers.Types
+import Controllers.UserAdd
+import Controllers.Users
+import Controllers.Main
+import Controllers.GroupAdd
+import Controllers.DashboardAdd
+import Controllers.ContentConstructor
+import Controllers.GroupConfiguration
+import Controllers.DataAnalysis
+import Controllers.Sandbox
+
+-- |Every new route adds a client controller here and a route in ClientRoutes.hs
+
+clientControllerPool::ControllerPool
+clientControllerPool = [mainController
+                    ,usersController
+                    ,useraddController
+                    ,groupaddController
+                    ,dashboardaddController
+                    ,contentConstructorController
+                    ,dataAnalysisController
+                    ,sandboxController,groupConfigurationController]
+                   
+
+
+
+
+
+
+-- |Client Loading command
+
+
+
+loadClientControllers :: ControllerPool -> JavascriptUrl (Route App)
+loadClientControllers (controller:controllers) = [julius| 
+                                       ^{controllerWidget controller}
+                                       ^{loadClientControllers controllers}
+|]
+loadClientControllers [] = [julius| |]

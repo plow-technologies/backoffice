@@ -1,0 +1,151 @@
+-- REMEMBER THIS FILE HAS PRECEDENCE!!!!
+
+
+User
+    ident Text
+    password Text Maybe
+    UniqueUser ident
+Email
+    email Text
+    user UserId Maybe
+    verkey Text Maybe
+    UniqueEmail email
+
+
+Group
+    name Text
+    description Textarea
+    UniqueGroup name
+
+GroupUserJoin
+    gId   GroupId
+    uId   UserId
+    UniqueGroupUserJoin gId uId
+    
+
+Audit 
+   uid UserId
+   msg Text
+   UniqueAudit uid msg    
+ -- By default this file is used in Model.hs (which is imported by Foundation.hs)
+
+PurchaseOrder
+  poNum         Text
+  UniquePoNum   poNum
+  project       Text
+  vendor        Text
+  requested     Text
+  approved      Text
+  date          Day
+  rcvDate       Day
+  payDate       Day
+  status        Text
+  notes         Textarea
+  
+
+WorkOrder
+  num           Text
+  UniqueNum     num
+  customer      Text
+  field         Text
+  location      Text
+  date          Day
+  dateNeeded    Day
+  quoteFrom     Text
+  productType   Text
+  status	Text
+  notes         Textarea
+
+
+Product
+  customer       Text
+  productName    Text
+  prodNum   Text
+  UniqueprodNum prodNum
+  description   Textarea
+  preparedBy     Text
+  date			Text
+  version		Text
+
+Part
+  partNum           Text
+  Uniquepartnum     partNum
+  manNum            Text
+  UniquemanNum      manNum
+  manufacturer      Text
+  category          Text
+  description       Textarea
+  singlerCost        Double
+  singlefCost	     Double
+  extendedCost      Double
+  lastLeadTime      Double
+  leadUnit          Text
+
+Location
+  name    Text
+  Uniquename name
+  phone   Text
+  address Textarea
+  
+PhyBin
+  binNumber Text
+  UniquebinNumber binNumber
+  qty Double
+
+
+-- Joins
+
+PartComplete
+  locationId LocationId
+  binNumber PhyBinId
+  partId PartId
+  UniquePartId  partId
+
+
+ProductPart
+  productId ProductId
+  partId    PartId 
+  qty       Double
+  UniqueProductPart productId partId
+
+
+PurchaseOrderPart
+  purchaseOrderId PurchaseOrderId
+  partId PartId 
+  qty Double
+  UniquePurchaseOrderPart purchaseOrderId partId
+
+
+WorkOrderProduct
+  workOrderId WorkOrderId
+  productId ProductId
+  qty       Double
+  UniqueWorkOrderProduct workOrderId productId
+
+WorkOrderPart
+  workOrderId WorkOrderId
+  partId PartId
+  qty Double 
+  UniqueWorkOrderPart workOrderId partId
+
+
+
+--one AC field for all the various autocompletes
+
+ACpart
+  field (Maybe Text)
+  resultPartId PartId
+  resultTitle Text
+  resultExcerpt Html
+
+ACproduct
+  field (Maybe Text)
+  resultProductId ProductId
+  resultTitle Text
+  resultExcerpt Html
+
+PartSearch
+  field Text
+
+ProductSearch
+  field Text
