@@ -1,23 +1,34 @@
 module Foundation where
+
 import Prelude
+
 import Yesod
+
+import           Yesod.Core.Types         (Logger)
+
 import Yesod.Static
+
 import Yesod.Auth
 import Yesod.Auth.BrowserId
 import Yesod.Auth.GoogleEmail
 import Yesod.Default.Config
+
 import Yesod.Default.Util (addStaticContentExternal)
+
 import Network.HTTP.Conduit (Manager)
+
 import qualified Settings
+
 import Settings.Development (development)
+
 import qualified Database.Persist
-import Database.Persist.Sql (SqlPersistT)
+
+import Database.Persist.Sql (SqlPersistT,SqlBackend)
 import Settings.StaticFiles
 import Settings (widgetFile, Extra (..))
 import Model
 import Text.Jasmine (minifym)
 import Text.Hamlet (hamletFile)
-import System.Log.FastLogger (Logger)
 
 -- | The site argument for your application. This can be a good place to
 -- keep settings and values requiring initialization before your application
@@ -133,10 +144,11 @@ instance Yesod App where
 
 -- How to run database actions.
 instance YesodPersist App where
-    type YesodPersistBackend App = SqlPersistT
+    type YesodPersistBackend App = SqlBackend
     runDB = defaultRunDB persistConfig connPool
 instance YesodPersistRunner App where
     getDBRunner = defaultGetDBRunner connPool
+instance YesodAuthPersist App where
 
 instance YesodAuth App where
     type AuthId App = UserId

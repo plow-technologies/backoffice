@@ -51,36 +51,38 @@ library
                 DeriveDataTypeable
 
     build-depends: base                          >= 4          && < 5
-                 -- , yesod-platform                >= 1.1        && < 1.2
-                 , yesod                         >= 1.2        && < 1.3
-                 , yesod-core                    >= 1.2        && < 1.3
-                 , yesod-auth                    >= 1.2        && < 1.3
-                 , yesod-static                  >= 1.2        && < 1.3
-                 , yesod-form                    >= 1.3        && < 1.4
-                 , bytestring                    >= 0.9        && < 0.11
-                 , text                          >= 0.11       && < 0.12
-                 , persistent                    >= 1.2        && < 1.3
-                 , persistent-mysql              >= 1.2        && < 1.3
-                 , persistent-template           >= 1.2        && < 1.3
+                 , http-client >= 0.4.11.2
+                 -- , yesod-platform                >= 1.1    
+                 , yesod                         >= 1.2       
+                 , yesod-core                    >= 1.2       
+                 , yesod-auth                    >= 1.2       
+                 , yesod-static                  >= 1.2       
+                 , yesod-form                    >= 1.3       
+                 , bytestring                    >= 0.9       
+                 , text                          >= 0.11      
+                 , persistent                    >= 1.2       
+                 , persistent-mysql              >= 1.2       
+                 , persistent-template           >= 1.2       
                  , template-haskell
-                 , hamlet                        >= 1.1        && < 1.2
-                 , shakespeare-css               >= 1.0        && < 1.1
-                 , shakespeare-js                >= 1.0.2      && < 1.2
-                 , shakespeare-text              >= 1.0        && < 1.1
-                 , hjsmin                        >= 0.1        && < 0.2
-                 , monad-control                 >= 0.3        && < 0.4
-                 , wai-extra                     >= 1.3        && < 1.4
-                 , yaml                          >= 0.8        && < 0.9
-                 , http-conduit                  >= 1.9        && < 1.10
-                 , directory                     >= 1.1        && < 1.3
-                 , warp                          >= 1.3        && < 1.4
-                 , time                          >= 1.4        && < 1.5          
+                 , hamlet                        >= 1.1       
+                 , shakespeare-css               >= 1.0       
+                 , shakespeare-js                >= 1.0.2     
+                 , shakespeare-text              >= 1.0       
+                 , hjsmin                        >= 0.1       
+                 , monad-control                 >= 0.3       
+                 , wai-extra                     >= 1.3       
+                 , yaml                          >= 0.8       
+                 , http-conduit                  >= 1.9       
+                 , directory                     >= 1.1       
+                 , warp                          >= 1.3       
+                 , time                          >= 1.4              
                  , data-default
                  , aeson
+                 , shakespeare
                  , conduit                       >= 1.0
                  , monad-logger                  >= 0.3
                  , fast-logger                   >= 0.3
-
+                 , wai-logger
 executable         backoffice
     if flag(library-only)
         Buildable: False
@@ -108,5 +110,5 @@ test-suite test
                  , persistent-mysql
                  , resourcet
                  , monad-logger
-                 , transformers
+                , transformers
                  , hspec
